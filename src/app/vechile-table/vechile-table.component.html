@@ -1,0 +1,51 @@
+ <div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div> 
+
+<!-- <div class="example-header">
+  <mat-select placeholder="Search Customer">
+    <mat-option *ngFor="let stage of optionsArray" [value]="all" (onSelectionChange)="applySelectFilter($event, stage)">
+      {{stage.vechileId}}
+    </mat-option>
+  </mat-select>
+</div> -->
+
+<div>
+
+<mat-table [dataSource] = "dataSource">
+<ng-container matColumnDef = "customerName">
+<mat-header-cell *matHeaderCellDef>Customer Name</mat-header-cell>
+<mat-cell *matCellDef="let car">{{ car.customerName }}</mat-cell>
+</ng-container>
+<ng-container matColumnDef = "vechileId">
+  <mat-header-cell *matHeaderCellDef>Vechile ID</mat-header-cell>
+  <mat-cell *matCellDef="let car">{{ car.vechileId }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef = "registerationNumber">
+    <mat-header-cell *matHeaderCellDef>Registeration Number</mat-header-cell>
+    <mat-cell *matCellDef="let car">{{ car.registerationNumber }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef = "status">
+      <mat-header-cell *matHeaderCellDef>Vehile Status</mat-header-cell>
+      <mat-cell *matCellDef="let car">{{ car.status }}</mat-cell>
+      </ng-container>
+
+    
+  
+<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<!-- <mat-table #table [dataSource]="dataSource" >
+  <ng-container matColumnDef="{{column.customerName}}" *ngFor="let column of columnNames">
+    <mat-header-cell *matHeaderCellDef> {{column.customerName}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element[column.customerName]}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table> -->
+
+</div>

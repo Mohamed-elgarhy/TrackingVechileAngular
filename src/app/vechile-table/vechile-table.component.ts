@@ -1,6 +1,8 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import {MatTableDataSource,MatSortable,MatSort}  from '@angular/material';
 import { VechileService } from '../vechile.service';
+import { setFullScreen } from '../models/full.screen';
+
 import {Vechile}  from '../models/vechile.model';
 @Component({
   selector: 'app-vechile-table',
@@ -16,7 +18,15 @@ export class VechileTableComponent implements OnInit {
 
   constructor(private vehileService : VechileService,private changeDetectorRefs: ChangeDetectorRef) { }
 
-  
+  toggleFullScreen() {
+    let elem =  document.body; 
+    let methodToBeInvoked = elem.requestFullscreen || 
+     elem.webkitRequestFullScreen || elem['mozRequestFullscreen'] 
+     || 
+     elem['msRequestFullscreen']; 
+    if(methodToBeInvoked) methodToBeInvoked.call(elem);
+
+}
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -49,10 +59,11 @@ export class VechileTableComponent implements OnInit {
 
   ngOnInit() {
 
+    setFullScreen(true);
     setInterval(() => {
       this.refresh();
       this.changeDetectorRefs.markForCheck();
-    }, 25000);
+    }, 5000);
     
 
     
